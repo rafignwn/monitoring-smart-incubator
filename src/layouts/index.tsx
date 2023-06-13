@@ -44,6 +44,12 @@ export default function MainLayout() {
   }
 
   useEffect(() => {
+    if (window.innerWidth < 750) {
+      setShow(false);
+    }
+  }, []);
+
+  useEffect(() => {
     window.addEventListener("click", handleOutsideClick);
 
     if (startTime) {
@@ -62,7 +68,7 @@ export default function MainLayout() {
   return (
     <div className="layout_container">
       <div className="topbar bg-emerald-400 flex justify-between items-center px-5 py-2">
-        <h4 className="text-emerald-800 tracking-widest text-lg font-bold">
+        <h4 className="text-emerald-800 tracking-widest hidden md:block text-lg font-bold">
           Welcome back {currentUser?.name.split(" ")[0]}!
         </h4>
         {elapsedTime && startTime && (
@@ -86,7 +92,7 @@ export default function MainLayout() {
         ref={sidebarRef}
         className={`sidebar h-full md:relative z-50 fixed right-0 ${
           show ? "w-56" : "w-0"
-        } transition-width duration-200 md:w-56 ease-in-out bg-emerald-200`}
+        } transition-width duration-200 w-0 md:w-56 ease-in-out bg-emerald-200`}
       >
         <Sidebar handleClose={() => setShow(false)} />
       </div>
