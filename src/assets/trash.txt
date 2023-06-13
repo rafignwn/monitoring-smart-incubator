@@ -1,0 +1,20 @@
+// const [oldUser, setOldUser] = useState<UserType | null>(null);
+
+  // async function getOldUser() {
+  //   try {
+  //     if (id) {
+  //       const res = await getDoc(doc(store, "users", id));
+
+  //       setOldUser({ uid: id, ...res.data() } as UserType);
+  //     } else {
+  //       throw { error: "Id tidak boleh kosong" };
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     return navigation("/users");
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   id && getOldUser();
+  // }, [id]);

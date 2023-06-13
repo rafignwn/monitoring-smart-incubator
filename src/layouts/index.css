@@ -1,0 +1,36 @@
+.layout_container {
+    --topbar-height: 4rem;
+    display: grid;
+    grid-template-areas: 
+    "sidebar topbar"
+    "sidebar main";
+    grid-template-rows: var(--topbar-height) 1fr;
+    grid-template-columns: auto 1fr;
+    height: 100dvh;
+    width: 100dvw;
+}
+
+.layout_container > .topbar {
+    grid-area: topbar;
+}
+
+.layout_container > .sidebar {
+    grid-area: sidebar;
+}
+
+.layout_container > main {
+    grid-area: main;
+    max-height: calc(100vh - var(--topbar-height));
+    display: grid;
+    grid-template-areas: "content" "footer";
+    grid-template-rows: 1fr 60px;
+    grid-template-columns: 100%;
+}
+
+.layout_container > main .content {
+    grid-area: content;
+}
+
+.layout_container > main footer {
+    grid-area: footer;
+}
