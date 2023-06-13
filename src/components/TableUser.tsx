@@ -1,10 +1,10 @@
-import { Delete, EditTwo } from "@icon-park/react";
+import { Delete } from "@icon-park/react";
 import { deleteDoc, doc } from "firebase/firestore";
 import { store } from "../firebase";
 import { toast } from "react-hot-toast";
 import { useContext } from "react";
 import { AuthContext, TUser } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 interface ITableProps {
   data: Array<object | TUser>;
@@ -95,7 +95,7 @@ export function TableHead({ children, className }: ITableContent) {
 }
 
 export default function TableUser({ data, className = "" }: ITableProps) {
-  const navigation = useNavigate();
+  // const navigation = useNavigate();
 
   return (
     <table className={className}>
