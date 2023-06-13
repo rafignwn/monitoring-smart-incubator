@@ -3,24 +3,24 @@ import {
   ChartLine,
   Data,
   Logout,
-  Peoples,
-  PeoplePlusOne,
-  EditName,
+  // Peoples,
+  // PeoplePlusOne,
+  // EditName,
   Control,
 } from "@icon-park/react";
 import { useNavigate } from "react-router-dom";
 import { TLink } from "./SidebarLink";
 import incubator from "../assets/incubator.png";
 import { useContext } from "react";
-import { AuthContext, TUser } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 import SidebarLink from "./SidebarLink";
 import SidebarButton, { TButton } from "./SidebarButton";
 import { auth } from "../firebase";
 
 export default function Sidebar({ handleClose }: { handleClose: () => void }) {
   const navigation = useNavigate();
-  const { dispatch, currentUser } = useContext(AuthContext);
-  const notShow: boolean = (currentUser as TUser)?.role !== "admin";
+  const { dispatch } = useContext(AuthContext);
+  // const notShow: boolean = (currentUser as TUser)?.role !== "admin";
 
   const links: Array<TLink> = [
     {
