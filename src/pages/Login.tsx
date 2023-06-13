@@ -58,15 +58,15 @@ export default function Login() {
   }, []);
 
   return (
-    <div className="w-full min-h-full md:h-full h-fit flex-col bg-sky-100 flex items-start md:items-center justify-center">
-      <div className="flex flex-col md:flex-row gap-10 h-full items-center md:mb-0 md:mt-0 md:justify-center mb-10 mt-10 px-4">
+    <div className="w-full min-h-full md:h-full h-fit flex-col bg-sky-100 flex items-start md:items-center justify-center box-border">
+      <div className="flex flex-col md:flex-row gap-10 h-full items-center md:mb-0 md:mt-0 md:justify-center mb-10 mt-10 px-2">
         <div className="flex flex-col items-center md:px-3 md:self-stretch rounded-xl justify-center">
           <img src={incubationIcon} alt="logo" className="mb-10" />
           <h1 className="mb-10 font-semibold text-sky-700 text-4xl text-center w-full md:w-2/3 px-5">
             Sistem Monitoring Smart Incubator Berbasis IOT
           </h1>
         </div>
-        <div className="flex w-fit flex-col items-center bg-sky-600 p-8 rounded-xl shadow-gray-300 shadow-lg">
+        <div className="flex w-fit flex-col items-center bg-sky-600 p-5 md:p-8 rounded-xl shadow-gray-300 shadow-lg">
           <h1 className="text-sky-50 font-bold text-3xl mb-10 underline">
             Login
           </h1>
