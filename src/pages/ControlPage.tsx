@@ -77,7 +77,7 @@ export default function ControlPage() {
         if (temperature < 37) {
           setLightOne(true);
           setLightTwo(true);
-        } else if (temperature > 39) {
+        } else if (temperature > 39 && temperature < 40) {
           setLightOne(false);
           setLightTwo(true);
         } else if (temperature > 40) {
