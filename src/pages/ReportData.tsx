@@ -141,7 +141,7 @@ export default function ReportData() {
         setLoading(true);
       }
       const res = await fetch(
-        "http://rafignwn-api.000webhostapp.com/getDht.php"
+        "https://rafignwn-api.000webhostapp.com/getDht.php"
       );
       const res_data = await res.json();
       console.log(res_data);
