@@ -154,6 +154,9 @@ export default function ReportData() {
   }
 
   useEffect(() => {
+    // mengganti judul website
+    document.title = "Rekap Data - Smart Inkubator";
+
     const dataInterval = setInterval(getData, 1000);
 
     return () => {
