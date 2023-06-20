@@ -7,6 +7,7 @@ import {
   // PeoplePlusOne,
   // EditName,
   Control,
+  Analysis,
 } from "@icon-park/react";
 import { useNavigate } from "react-router-dom";
 import { TLink } from "./SidebarLink";
@@ -45,6 +46,12 @@ export default function Sidebar({ handleClose }: { handleClose: () => void }) {
       text: "Controler",
       icon: <Control size={20} />,
       linkTo: "/control",
+      handleClose,
+    },
+    {
+      text: "Report Data",
+      icon: <Analysis size={20} />,
+      linkTo: "/report",
       handleClose,
     },
     // {
