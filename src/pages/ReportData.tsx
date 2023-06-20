@@ -111,6 +111,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
   );
 };
 
+// main component
 export default function ReportData() {
   const [filterText, setFilterText] = useState("");
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
@@ -120,6 +121,7 @@ export default function ReportData() {
     Array<TReportData> | undefined
   >([]);
 
+  // action datatable untuk mengeksport data
   const actionMemo = useMemo(
     () => (
       <Export
@@ -132,6 +134,7 @@ export default function ReportData() {
     [filteredData]
   );
 
+  // mengambil data
   async function getData() {
     try {
       if (!data) {
