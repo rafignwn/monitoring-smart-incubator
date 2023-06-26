@@ -1,4 +1,4 @@
-import { Close } from "@icon-park/react";
+import FilterComponent from "../components/FilterComponent";
 import { useEffect, useMemo, useState } from "react";
 import DataTable from "react-data-table-component";
 
@@ -9,12 +9,6 @@ type TReportData = {
   waktu: string;
   suhu: string;
   kelembaban: string;
-};
-
-type FilterComponentProps = {
-  filterText: string;
-  onFilter: (value: string) => void;
-  onClear: () => void;
 };
 
 interface IndexSignature {
@@ -78,38 +72,6 @@ function Export({
     </button>
   );
 }
-
-const FilterComponent: React.FC<FilterComponentProps> = ({
-  filterText,
-  onFilter,
-  onClear,
-}) => {
-  const [focus, setFocus] = useState<boolean>(false);
-
-  return (
-    <div
-      className={`mb-5 border-2 rounded-lg relative pr-4 ${
-        focus ? "border-emerald-500" : "border-emerald-200"
-      }`}
-    >
-      <input
-        className="px-4 py-1 rounded-lg outline-none"
-        type="text"
-        placeholder="Filter By Date"
-        value={filterText}
-        onChange={(e) => onFilter(e.target.value)}
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
-      />
-      <button
-        className="bg-emerald-200 rounded-r-md border-2 hover:border-emerald-600 border-emerald-200 hover:bg-emerald-600 right-0 inline-block px-2 absolute py-1 h-full aspect-square font-semibold uppercase text-white"
-        onClick={onClear}
-      >
-        <Close size={20} />
-      </button>
-    </div>
-  );
-};
 
 // main component
 export default function ReportData() {
