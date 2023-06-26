@@ -95,7 +95,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
       <input
         className="px-4 py-1 rounded-lg outline-none"
         type="text"
-        placeholder="Filter By Date and Day"
+        placeholder="Filter By Date"
         value={filterText}
         onChange={(e) => onFilter(e.target.value)}
         onFocus={() => setFocus(true)}
@@ -174,7 +174,6 @@ export default function ReportData() {
   useEffect(() => {
     const newFilteredData = data?.filter(
       (item) =>
-        item.hari.toLowerCase().includes(filterText.toLowerCase()) ||
         item.tanggal.toLowerCase().includes(filterText.toLowerCase()) ||
         item.waktu.toLowerCase().includes(filterText.toLowerCase())
     );
