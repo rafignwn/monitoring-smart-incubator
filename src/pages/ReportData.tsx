@@ -144,13 +144,13 @@ export default function ReportData() {
   }, [data]);
 
   return (
-    <div className="p-5">
+    <div className="p-5 md:px-5 px-0">
       <h1 className="my-5 text-2xl font-bold text-emerald-700">
         {loading && !data ? "Loading Data..." : "Halaman Rekap Data"}
       </h1>
       <DataTable
         title={
-          <h4 className="font-semibold text-xl text-emerald-600">
+          <h4 className="mt-3 font-semibold text-xl text-emerald-600">
             Data Suhu dan Kelembaban
           </h4>
         }
