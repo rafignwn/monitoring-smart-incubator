@@ -166,7 +166,7 @@ export default function ReportData() {
             Kelembaban :{" "}
           </span>
           <span className="font-semibold bg-white py-1 px-2 rounded-sm text-sky-700">
-            {humiditis[humiditis.length - 1]}%
+            {humiditis[humiditis.length - 1]}Rh
           </span>
         </p>
       </div>
@@ -198,7 +198,7 @@ export default function ReportData() {
           },
           {
             name: "Kelembaban",
-            selector: (row) => `${row.kelembaban}%`,
+            selector: (row) => `${row.kelembaban}Rh`,
           },
         ]}
         data={filteredData ? filteredData : []}

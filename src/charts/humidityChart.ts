@@ -60,7 +60,7 @@ export const humidityChartConfig: ChartConfiguration<"line", number[], number> =
               return `Data ke-${tooltipItem[0].dataIndex + 1}`;
             },
             label: (tooltipItem) => {
-              return `Kelembaban: ${tooltipItem.formattedValue} %`;
+              return `Kelembaban: ${tooltipItem.formattedValue} Rh`;
             },
           },
         },
@@ -75,11 +75,11 @@ export const humidityChartConfig: ChartConfiguration<"line", number[], number> =
           ticks: {
             stepSize: 10,
             callback: (tickValue) => {
-              return `${tickValue} %`;
+              return `${tickValue} Rh`;
             },
           },
           title: {
-            text: "Kelembaban %",
+            text: "Kelembaban - Rh",
             display: true,
             color: colors.green[900],
             font: {
