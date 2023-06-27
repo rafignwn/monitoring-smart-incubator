@@ -84,21 +84,32 @@ export default function ReportData() {
     Array<TReportData> | undefined
   >([]);
 
+  // omit kelembaban dan suhu
+  const [omitSuhu, setOmitSuhu] = useState<boolean>(false);
+  const [omitKelembaban, setOmitKelembaban] = useState<boolean>(false);
+
   // data suhu dan kelembaban
   const { temperatures, humiditis } = useContext(DHTContext);
 
   // action datatable untuk mengeksport data
-  const actionMemo = useMemo(
-    () => (
+  const actionMemo = useMemo(() => {
+    let dataReport: any = filteredData;
+
+    if (omitSuhu) {
+      dataReport = filteredData?.map(({ suhu, ...newData }) => newData);
+    }
+
+    if (omitKelembaban) {
+      dataReport = filteredData?.map(({ kelembaban, ...newData }) => newData);
+    }
+
+    return (
       <Export
         disabled={false}
-        onExport={() =>
-          downloadCSV(filteredData ? filteredData : [], filterText)
-        }
+        onExport={() => downloadCSV(dataReport ? dataReport : [], filterText)}
       />
-    ),
-    [filteredData]
-  );
+    );
+  }, [filteredData]);
 
   // mengambil data
   async function getData() {
@@ -110,7 +121,6 @@ export default function ReportData() {
         "https://rafignwn-api.000webhostapp.com/getDht.php"
       );
       const res_data = await res.json();
-      console.log(res_data);
       setData(res_data);
     } catch (error) {
       console.log(error);
@@ -146,9 +156,6 @@ export default function ReportData() {
 
     setFilteredData(newFilteredData);
   }, [data]);
-
-  const [omitSuhu, setOmitSuhu] = useState<boolean>(false);
-  const [omitKelembaban, setOmitKelembaban] = useState<boolean>(false);
 
   return (
     <div className="p-5 md:px-5 px-0">

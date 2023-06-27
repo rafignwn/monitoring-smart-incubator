@@ -53,7 +53,7 @@ export default function DHTContextProvider({
       unsubHumiditis();
       unsubTemperatures();
     };
-  });
+  }, []);
 
   return (
     <DHTContext.Provider value={{ temperatures, humiditis }}>
