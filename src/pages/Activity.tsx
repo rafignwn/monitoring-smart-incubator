@@ -1,6 +1,4 @@
-import { useEffect, useRef } from "react";
-import { db } from "../firebase";
-import { ref, onValue } from "firebase/database";
+import { useContext, useEffect, useRef } from "react";
 import { temperatureChartConfig } from "../charts/temperatureChart";
 import {
   LineController,
@@ -13,6 +11,7 @@ import {
   Filler,
 } from "chart.js";
 import { humidityChartConfig } from "../charts/humidityChart";
+import { DHTContext } from "../contexts/DHTContext";
 
 Chart.register(
   LineController,
@@ -29,6 +28,7 @@ export default function Activity() {
   const canvasKelembabanRef = useRef<HTMLCanvasElement | null>(null);
   let lineChartSuhu: Chart<"line", number[], number> | null = null;
   let lineChartKelembaban: Chart<"line", number[], number> | null = null;
+  const { temperatures, humiditis } = useContext(DHTContext);
 
   useEffect(() => {
     document.title = "Activity - Smart Inkubator";
@@ -53,44 +53,23 @@ export default function Activity() {
         humidityChartConfig
       );
     }
-
-    const unsubSuhu = onValue(
-      ref(db, "suhu"),
-      (snapshot) => {
-        const resData = snapshot.val();
-        console.log(resData);
-        lineChartSuhu?.data.datasets.forEach((dataset) => {
-          dataset.data = resData;
-        });
-
-        lineChartSuhu?.update();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-    const unsubKelembaban = onValue(
-      ref(db, "kelembaban"),
-      (snapshot) => {
-        const resData = snapshot.val();
-        console.log(resData);
-        lineChartKelembaban?.data.datasets.forEach((dataset) => {
-          dataset.data = resData;
-        });
-
-        lineChartKelembaban?.update();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-    return () => {
-      unsubSuhu();
-      unsubKelembaban();
-    };
   }, []);
+
+  useEffect(() => {
+    // update line chart suhu
+    lineChartSuhu?.data.datasets.forEach((dataset) => {
+      dataset.data = temperatures;
+    });
+
+    lineChartSuhu?.update();
+
+    // update line chart kelembaban
+    lineChartKelembaban?.data.datasets.forEach((dataset) => {
+      dataset.data = humiditis;
+    });
+
+    lineChartKelembaban?.update();
+  }, [temperatures, humiditis]);
 
   return (
     <div className="flex justify-start items-center flex-col">

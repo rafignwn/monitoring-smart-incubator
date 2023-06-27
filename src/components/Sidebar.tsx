@@ -1,7 +1,7 @@
 import {
   HomeTwo,
   ChartLine,
-  Data,
+  // Data,
   Logout,
   // Peoples,
   // PeoplePlusOne,
@@ -36,12 +36,12 @@ export default function Sidebar({ handleClose }: { handleClose: () => void }) {
       linkTo: "/activity",
       handleClose,
     },
-    {
-      text: "Realtime Data",
-      icon: <Data size={20} />,
-      linkTo: "/realtime",
-      handleClose,
-    },
+    // {
+    //   text: "Realtime Data",
+    //   icon: <Data size={20} />,
+    //   linkTo: "/realtime",
+    //   handleClose,
+    // },
     {
       text: "Controler",
       icon: <Control size={20} />,

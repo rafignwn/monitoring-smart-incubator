@@ -1,6 +1,7 @@
 import FilterComponent from "../components/FilterComponent";
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import DataTable from "react-data-table-component";
+import { DHTContext } from "../contexts/DHTContext";
 
 type TReportData = {
   id: string;
@@ -83,6 +84,9 @@ export default function ReportData() {
     Array<TReportData> | undefined
   >([]);
 
+  // data suhu dan kelembaban
+  const { temperatures, humiditis } = useContext(DHTContext);
+
   // action datatable untuk mengeksport data
   const actionMemo = useMemo(
     () => (
@@ -148,6 +152,24 @@ export default function ReportData() {
       <h1 className="my-5 text-2xl font-bold text-emerald-700">
         {loading && !data ? "Loading Data..." : "Halaman Rekap Data"}
       </h1>
+      <div className="flex mb-3 gap-3 flex-wrap">
+        <p className="bg-yellow-100 border border-yellow-300 pl-5 pr-1 py-2 rounded-md">
+          <span className="text-yellow-600 font-semibold uppercase mr-3">
+            Suhu :
+          </span>
+          <span className="font-semibold bg-white py-1 px-2 rounded-sm text-yellow-700">
+            {temperatures[temperatures.length - 1]}°C
+          </span>
+        </p>
+        <p className="bg-sky-100 border border-sky-300 pl-5 pr-1 py-2 rounded-md">
+          <span className="text-sky-600 font-semibold uppercase mr-3">
+            Kelembaban :{" "}
+          </span>
+          <span className="font-semibold bg-white py-1 px-2 rounded-sm text-sky-700">
+            {humiditis[humiditis.length - 1]}%
+          </span>
+        </p>
+      </div>
       <DataTable
         title={
           <h4 className="mt-3 font-semibold text-xl text-emerald-600">
