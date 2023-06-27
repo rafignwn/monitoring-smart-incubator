@@ -147,6 +147,9 @@ export default function ReportData() {
     setFilteredData(newFilteredData);
   }, [data]);
 
+  const [omitSuhu, setOmitSuhu] = useState<boolean>(false);
+  const [omitKelembaban, setOmitKelembaban] = useState<boolean>(false);
+
   return (
     <div className="p-5 md:px-5 px-0">
       <h1 className="my-5 text-2xl font-bold text-emerald-700">
@@ -169,6 +172,20 @@ export default function ReportData() {
             {humiditis[humiditis.length - 1]}Rh
           </span>
         </p>
+      </div>
+      <div className="mb-3">
+        <button
+          className="bg-yellow-500 text-sm text-white font-semibold uppercase px-4 py-1 rounded-md mr-3"
+          onClick={() => setOmitSuhu((prev) => !prev)}
+        >
+          {omitSuhu ? "Show Suhu" : "Hide Suhu"}
+        </button>
+        <button
+          className="bg-sky-500 text-sm text-white font-semibold uppercase px-4 py-1 rounded-md mr-3"
+          onClick={() => setOmitKelembaban((prev) => !prev)}
+        >
+          {omitKelembaban ? "Show Kelembaban" : "Hide Kelembaban"}
+        </button>
       </div>
       <DataTable
         title={
@@ -195,9 +212,11 @@ export default function ReportData() {
           {
             name: "Suhu",
             selector: (row) => `${row.suhu}°C`,
+            omit: omitSuhu,
           },
           {
             name: "Kelembaban",
+            omit: omitKelembaban,
             selector: (row) => `${row.kelembaban}Rh`,
           },
         ]}
