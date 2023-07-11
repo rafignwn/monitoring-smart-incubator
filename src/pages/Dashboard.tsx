@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-import fotoKuwali1 from "../assets/ayam1.jpg";
-import fotoKuwali2 from "../assets/ayam2.jpg";
+import fotoKuwali1 from "../assets/inkubator-1.jpg";
+import fotoKuwali2 from "../assets/inkubator-2.jpg";
 
 export default function Dashboard() {
   useEffect(() => {
@@ -18,9 +18,9 @@ export default function Dashboard() {
         Memonitoring suhu dan kelembaban secara realtime serta mengontrol
         incubator.
       </p>
-      <div className="grid mx-8 grid-cols-1 gap-8 md:grid-cols-2">
+      <div className="grid mx-1 md:mx-8 grid-cols-1 gap-8 md:grid-cols-2">
         <div className="w-full relative aspect-square border-3 border-emerald-400 overflow-hidden rounded-lg">
-          <h4 className="absolute uppercase top-4 left-4 right-4 text-center font-semibold text-emerald-50 rounded-md text-2xl bg-emerald-700 px-4 py-1">
+          <h4 className="absolute uppercase top-4 left-4 right-4 text-center font-semibold text-emerald-50 rounded-md text-xl md:text-2xl bg-emerald-700 bg-opacity-60 px-4 py-1">
             Foto Incubator
           </h4>
           <img
