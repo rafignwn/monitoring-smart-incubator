@@ -31,7 +31,7 @@ export default function Sidebar({ handleClose }: { handleClose: () => void }) {
       handleClose,
     },
     {
-      text: "Activity",
+      text: "Monitoring",
       icon: <ChartLine size={20} />,
       linkTo: "/activity",
       handleClose,
