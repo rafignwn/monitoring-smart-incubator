@@ -76,8 +76,10 @@ function Export({
 
 // main component
 export default function ReportData() {
-  const [filterText, setFilterText] = useState("");
-  const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
+  const [filterTextFrom, setFilterTextFrom] = useState<string>("");
+  const [filterTextTo, setFilterTextTo] = useState<string>("");
+  const [resetPaginationToggle, setResetPaginationToggle] =
+    useState<boolean>(false);
   const [data, setData] = useState<Array<TReportData> | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
   const [filteredData, setFilteredData] = useState<
@@ -106,7 +108,12 @@ export default function ReportData() {
     return (
       <Export
         disabled={false}
-        onExport={() => downloadCSV(dataReport ? dataReport : [], filterText)}
+        onExport={() =>
+          downloadCSV(
+            dataReport ? dataReport : [],
+            `${filterTextFrom}-${filterTextTo}`
+          )
+        }
       />
     );
   }, [filteredData]);
@@ -141,20 +148,26 @@ export default function ReportData() {
   }, []);
 
   const handleClearFilter = () => {
-    if (filterText) {
+    if (filterTextFrom || filterTextTo) {
       setResetPaginationToggle(!resetPaginationToggle);
-      setFilterText("");
+      setFilterTextFrom("");
+      setFilterTextTo("");
     }
   };
 
   useEffect(() => {
-    const newFilteredData = data?.filter(
-      (item) =>
-        item.tanggal.toLowerCase().includes(filterText.toLowerCase()) ||
-        item.waktu.toLowerCase().includes(filterText.toLowerCase())
-    );
+    if (filterTextFrom && filterTextTo) {
+      const newFilteredData = data?.filter(
+        (item) =>
+          item.tanggal.toLowerCase() >= filterTextFrom.toLowerCase() &&
+          item.tanggal.toLowerCase() <= filterTextTo.toLowerCase()
+      );
 
-    setFilteredData(newFilteredData);
+      setFilteredData(newFilteredData);
+    } else {
+      setFilteredData(data);
+    }
+    // console.log(data);
   }, [data]);
 
   return (
@@ -183,15 +196,15 @@ export default function ReportData() {
       <div className="mb-3">
         <button
           className="bg-yellow-500 text-sm text-white font-semibold uppercase px-4 py-1 rounded-md mr-3"
-          onClick={() => setOmitSuhu((prev) => !prev)}
+          onClick={() => setOmitKelembaban((prev) => !prev)}
         >
-          {omitSuhu ? "Show Suhu" : "Hide Suhu"}
+          {!omitKelembaban ? "Show Suhu" : "Clear"}
         </button>
         <button
           className="bg-sky-500 text-sm text-white font-semibold uppercase px-4 py-1 rounded-md mr-3"
-          onClick={() => setOmitKelembaban((prev) => !prev)}
+          onClick={() => setOmitSuhu((prev) => !prev)}
         >
-          {omitKelembaban ? "Show Kelembaban" : "Hide Kelembaban"}
+          {!omitSuhu ? "Show Kelembaban" : "Clear"}
         </button>
       </div>
       <DataTable
@@ -233,8 +246,10 @@ export default function ReportData() {
         subHeader
         subHeaderComponent={
           <FilterComponent
-            filterText={filterText}
-            onFilter={setFilterText}
+            filterTextFrom={filterTextFrom}
+            filterTextTo={filterTextTo}
+            onFilterFrom={setFilterTextFrom}
+            onFilterTo={setFilterTextTo}
             onClear={handleClearFilter}
           />
         }
