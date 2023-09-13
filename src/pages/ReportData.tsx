@@ -124,9 +124,7 @@ export default function ReportData() {
       if (!data) {
         setLoading(true);
       }
-      const res = await fetch(
-        "http://rafignwn-api.000webhostapp.com/getDht.php"
-      );
+      const res = await fetch("https://kelasf.000webhostapp.com/getDht.php");
       const res_data = await res.json();
       setData(res_data);
     } catch (error) {
